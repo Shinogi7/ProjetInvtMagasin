@@ -6,9 +6,9 @@ namespace ProjetInvtMagasin.Controllers
     {
         static void Main(string[] args)
         {
-            ArticleService articleService = new ArticleService();
-            var listAticle = articleService.GenerateArticle();
             InventoryService inventoryService = new InventoryService();
+            ArticleService articleService = new ArticleService();
+            var listAticle = articleService.GenerateArticle();            
             inventoryService.AddArticle(listAticle);
 
         }
