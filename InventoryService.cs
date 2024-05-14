@@ -22,5 +22,12 @@
         }
         public void RemoveArticle(int Id) { }
         public void UpdateArticle(int Id) { }
+
+        public void displayInventory()
+        {
+            Console.WriteLine(inventory.Id);
+            Console.WriteLine(string.Join(",", inventory.Article.Select(x => x.Name)));
+
+        }
     }
 }
