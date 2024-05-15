@@ -5,23 +5,23 @@ namespace ProjetInvtMagasin.Controllers
 
     [ApiController]
     [Route("[controller]")]
-    public class InventoryController : Controller
+    public class InventoryController : ControllerBase
     {
-        public InventoryController()
+        private readonly IInventoryService _inventoryService;
+        public InventoryController(IInventoryService inventoryService)
         {
-                
+            _inventoryService = inventoryService;
         }
         [HttpGet(Name = "articles")]
         public IEnumerable<Article> GetArticles()
         {
-
             InventoryService inventoryService = new InventoryService();
             ArticleService articleService = new ArticleService();
             var listArticle = articleService.GenerateArticle();
-            inventoryService.AddArticle(listArticle);
-            inventoryService.displayInventory();
+            _inventoryService.AddArticle(listArticle);
+            _inventoryService.displayInventory();
 
-            return listArticle.ToArray();
+            return listArticle;
 
         }
     }

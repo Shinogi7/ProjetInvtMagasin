@@ -1,10 +1,9 @@
-﻿namespace ProjetInvtMagasin
+﻿
+namespace ProjetInvtMagasin
 {
-    public class InventoryService
+    public class InventoryService : IInventoryService
     {
-        public InventoryService() {
-            
-    }
+        public InventoryService() {}
         public Inventory inventory = new Inventory()
         {
             Id = 1,
@@ -29,5 +28,21 @@
             Console.WriteLine(string.Join(",", inventory.Article.Select(x => x.Name)));
 
         }
+
+        public IEnumerable<Article> GetArticles()
+        
+            {
+
+                InventoryService inventoryService = new InventoryService();
+                ArticleService articleService = new ArticleService();
+                var listArticle = articleService.GenerateArticle();
+                inventoryService.AddArticle(listArticle);
+                inventoryService.displayInventory();
+
+                return listArticle.ToArray();
+
+            }
+
+        
     }
 }
